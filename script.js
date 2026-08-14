@@ -1,72 +1,71 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // Exact GPS Coordinates for Destinations in Sri Lanka
-  const destinations = [
+  // Initialize map container safely
+  const mapElement = document.getElementById("sri-lanka-map");
+  if (!mapElement) return;
+
+  const map = L.map("sri-lanka-map", {
+    scrollWheelZoom: false // Prevents accidental scrolling on mobile
+  }).setView([7.5, 80.5], 8);
+
+  // Load OpenStreetMap Map Tiles
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    maxZoom: 18,
+    attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
+
+  // Exact 6 Route Stops matching your updated HTML Itinerary
+  const routeStops = [
     {
       day: "Day 1",
-      name: "Kurana",
-      lat: 7.1683,
-      lng: 79.8808,
+      title: "Kurana (Arrival)",
       stay: "Mr. Amal's Home",
-      desc: "Arrival & traditional welcome stay."
+      coords: [7.1895, 79.8656],
+      desc: "Chauffeur meeting, homestay arrival & welcome dinner."
     },
     {
       day: "Day 2",
-      name: "Sigiriya & Habarana",
-      lat: 7.9570,
-      lng: 80.7603,
-      stay: "Kassapa Lion Rock",
-      desc: "Sigiriya Citadel & Elephant Safari."
+      title: "Induruwa",
+      stay: "Pandanus Beach Resort & Spa",
+      coords: [6.3814, 80.0022],
+      desc: "Madu River safari & Sea Turtle Conservation Hatchery."
     },
     {
       day: "Day 3",
-      name: "Kandy",
-      lat: 7.2906,
-      lng: 80.6337,
-      stay: "Amaya Hills",
-      desc: "Temple of Tooth & Cultural Show."
+      title: "Colombo",
+      stay: "Amari Colombo",
+      coords: [6.9271, 79.8612],
+      desc: "City tour, historic landmarks, and luxury shopping."
     },
     {
       day: "Day 4",
-      name: "Nuwara Eliya",
-      lat: 6.9497,
-      lng: 80.7891,
-      stay: "Araliya Green Hills",
-      desc: "Tea Plantations & Ramboda Falls."
+      title: "Sigiriya",
+      stay: "Kassapa Lion Rock",
+      coords: [7.9570, 80.7603],
+      desc: "4x4 Elephant safari, village tour with lunch & Ayurveda massage."
     },
     {
       day: "Day 5",
-      name: "Induruwa",
-      lat: 6.3683,
-      lng: 80.0031,
-      stay: "Pandanus Beach Resort",
-      desc: "Little Adam's Peak & Ayurveda Massage."
+      title: "Kandy",
+      stay: "Amaya Hills",
+      coords: [7.2906, 80.6337],
+      desc: "Sigiriya Rock climb, Spice Garden lunch, Temple of the Tooth & Cultural Show."
     },
     {
-      day: "Day 6",
-      name: "Colombo",
-      lat: 6.9271,
-      lng: 79.8612,
-      stay: "Amari Colombo",
-      desc: "Madu River Safari & Colombo Shopping."
+      day: "Days 6 & 7",
+      title: "Nuwara Eliya & Departure",
+      stay: "Araliya Green Hills",
+      coords: [6.9497, 80.7891],
+      desc: "Ramboda Falls, Tea Factory tour & transfer to BIA for departure."
     }
   ];
 
-  // Initialize Map centered over Sri Lanka
-  const map = L.map('sri-lanka-map').setView([7.5, 80.5], 8);
-
-  // Load OpenStreetMap Map Tiles
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 18,
-    attribution: '© OpenStreetMap contributors'
-  }).addTo(map);
-
   const routeCoords = [];
 
-  // Add Markers and Custom Popups
-  destinations.forEach((item, index) => {
-    routeCoords.push([item.lat, item.lng]);
+  // Add Custom Numbered Markers & Popups
+  routeStops.forEach((stop, index) => {
+    routeCoords.push(stop.coords);
 
-    // Custom Pin Marker
+    // Numbered Circle Pin Marker (1, 2, 3, 4, 5, 6)
     const customIcon = L.divIcon({
       className: 'custom-map-pin',
       html: `<span>${index + 1}</span>`,
@@ -75,20 +74,20 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     const popupContent = `
-      <div style="font-family: 'Plus Jakarta Sans', sans-serif; padding: 4px;">
-        <span style="background:#0284c7; color:white; font-size:11px; font-weight:bold; padding:2px 8px; border-radius:10px;">${item.day}</span>
-        <h6 style="margin: 6px 0 2px 0; font-weight:800; color:#0f172a;">${item.name}</h6>
-        <p style="font-size:13px; margin:0; color:#334155;"><strong>Stay:</strong> ${item.stay}</p>
-        <p style="font-size:12px; margin-top:4px; color:#1e293b;">${item.desc}</p>
+      <div style="font-family: 'Plus Jakarta Sans', sans-serif; padding: 4px; max-width: 220px;">
+        <span style="background:#0284c7; color:white; font-size:11px; font-weight:bold; padding:2px 8px; border-radius:10px;">${stop.day}</span>
+        <h6 style="margin: 6px 0 2px 0; font-weight:800; color:#0f172a; font-size: 14px;">${stop.title}</h6>
+        <p style="font-size:12px; margin:0; color:#334155;"><strong>Stay:</strong> ${stop.stay}</p>
+        <p style="font-size:12px; margin-top:4px; color:#1e293b; line-height: 1.4;">${stop.desc}</p>
       </div>
     `;
 
-    L.marker([item.lat, item.lng], { icon: customIcon })
+    L.marker(stop.coords, { icon: customIcon })
       .addTo(map)
       .bindPopup(popupContent);
   });
 
-  // Draw Route Line Connecting the Destinations
+  // Draw Dashed Route Line Connecting the Destinations
   const polyline = L.polyline(routeCoords, {
     color: '#0284c7',
     weight: 4,
@@ -96,6 +95,18 @@ document.addEventListener("DOMContentLoaded", function () {
     dashArray: '6, 8'
   }).addTo(map);
 
-  // Auto Fit Map View to show all Pins
-  map.fitBounds(polyline.getBounds(), { padding: [30, 30] });
+  // Auto Fit Map View to show all Pins cleanly
+  const fitMapBounds = () => {
+    const isMobile = window.innerWidth < 768;
+    const paddingVal = isMobile ? [15, 15] : [35, 35];
+    map.fitBounds(polyline.getBounds(), { padding: paddingVal });
+  };
+
+  fitMapBounds();
+
+  // Recalculate on screen resize or orientation change
+  window.addEventListener('resize', () => {
+    map.invalidateSize();
+    fitMapBounds();
+  });
 });
