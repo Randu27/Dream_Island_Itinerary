@@ -6,6 +6,29 @@
   --body-text: #1e293b;
 }
 
+/* --- Global Containment Fixes (Prevents Mobile Horizontal Scroll) --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  max-width: 100%;
+  overflow-x: hidden; /* Stops screen popping/scrolling horizontally */
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+  color: var(--body-text);
+  font-size: 1.05rem;
+  line-height: 1.6;
+
+  /* 95% solid white/slate overlay over the pattern */
+  background: 
+    linear-gradient(rgba(248, 250, 252, 0.75), rgba(248, 250, 252, 0.75)),
+    url('images/licensed-image.jpg') repeat fixed;
+  background-size: auto, 550px;
+}
+
 /* --- Agency Branding Styles --- */
 .text-navy {
   color: #0b2545 !important;
@@ -15,21 +38,23 @@
   background-color: #0b2545 !important;
 }
 
-/* --- Header Logo Styling (Bigger & Crisp) --- */
+/* --- Header Navbar & Logo Styling (Mobile Responsive) --- */
 .brand-logo {
-  height: 68px !important; /* Bumped up from 52px for a bolder header presence */
+  height: 68px; /* High resolution on desktop */
+  max-height: 68px;
   width: auto;
+  max-width: 100%;
   object-fit: contain;
-  transition: transform 0.2s ease;
+  transition: transform 0.2s ease, height 0.2s ease;
 }
 
 .brand-logo:hover {
   transform: scale(1.03);
 }
 
-/* --- Footer Logo Styling (Bigger & Clean Padding) --- */
+/* --- Footer Logo Styling --- */
 .footer-logo {
-  height: 64px !important; /* Bumped up from 48px */
+  height: 64px !important;
   width: auto;
   object-fit: contain;
   background-color: #ffffff;
@@ -48,28 +73,7 @@
   border-color: rgba(255, 255, 255, 0.15) !important;
 }
 
-body {
-  font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
-  color: var(--body-text);
-  font-size: 1.05rem;
-  line-height: 1.6;
-
-  /* 95% solid white/slate overlay over the pattern */
-  background: 
-    linear-gradient(rgba(248, 250, 252, 0.75), rgba(248, 250, 252, 0.75)),
-    url('images/licensed-image.jpg') repeat fixed;
-  background-size: auto, 550px; /* Bumps up pattern image size without changing your gradient */
-}
-
-/* Hero Section */
-.hero {
-  background: linear-gradient(180deg, rgba(15, 23, 42, 0.6) 0%, rgba(15, 23, 42, 0.92) 100%),url('images/top_background.jpeg') center/cover no-repeat, #0f172a;
-  color: #ffffff;
-  padding: 60px 20px 45px;
-  border-radius: 0 0 28px 28px;
-}
-
-/* Hero Section */
+/* --- Hero Section --- */
 .hero {
   background: linear-gradient(180deg, rgba(15, 23, 42, 0.6) 0%, rgba(15, 23, 42, 0.92) 100%), 
               url('images/top_background.jpeg') center/cover no-repeat, #0f172a;
@@ -251,8 +255,41 @@ h5 {
   margin-bottom: 6px;
 }
 
+/* --- Comprehensive Mobile Responsiveness Media Query --- */
 @media (max-width: 768px) {
-  .hero h1 { font-size: 2.2rem; }
-  .hero p { font-size: 1.15rem; }
-  .day-photo-grid img { height: 90px; }
+  /* Scale down header logo on small screens */
+  .brand-logo { 
+    height: 46px !important; 
+  }
+  
+  /* Shrink text next to logo so it doesn't push off-screen */
+  .navbar-brand span {
+    font-size: 0.95rem !important;
+  }
+
+  .navbar-brand small {
+    font-size: 0.72rem !important;
+  }
+
+  /* Hero Adjustments */
+  .hero {
+    padding: 40px 15px 30px;
+  }
+
+  .hero h1 { 
+    font-size: 2rem; 
+  }
+
+  .hero p { 
+    font-size: 1.1rem; 
+  }
+
+  /* Grid scaling */
+  .day-photo-grid img { 
+    height: 90px; 
+  }
+
+  #sri-lanka-map {
+    height: 350px;
+  }
 }
