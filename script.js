@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
       title: "Sigiriya",
       stay: "Kassapa Lion Rock",
       coords: [7.9570, 80.7603],
-      desc: "4x4 Elephant safari, village tour with lunch & Ayurveda massage."
+      desc: "Elephant safari, village tour with lunch & Ayurveda massage."
     },
     {
       day: "Day 5",
