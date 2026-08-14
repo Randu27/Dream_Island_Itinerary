@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CEYLON IN 7 DAYS | Mr. Amal Fernando</title>
+  
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+  <!-- Leaflet CSS (Interactive Map) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+    <!-- 1. TOP BRANDING NAVBAR (Place right after <body>) -->
+<nav class="navbar navbar-expand-lg bg-white shadow-sm py-2 border-bottom sticky-top">
+  <div class="container d-flex justify-content-between align-items-center">
+    
+    <!-- Logo & Agency Name -->
+    <a class="navbar-brand d-flex align-items-center gap-3" href="#">
+      <!-- Save your logo image as images/logo.png -->
+      <img src="images/dream island logo.jpeg" alt="Dream Island Travels Logo" class="brand-logo" height="52" />
+      <div>
+        <span class="fw-bold fs-5 d-block text-navy lh-1">Dream Island Travels & Tours Pvt Ltd</span>
+        <small class="text-muted fw-semibold d-block mt-1" style="font-size: 0.8rem;">
+          Tailor-Made Holidays across Sri Lanka • Culture, Wildlife & Adventures
+        </small>
+      </div>
+    </a>
+
+    <!-- Tagline Badge (Visible on Desktop) -->
+    <div class="d-none d-lg-block text-end">
+      <span class="badge bg-navy text-white px-3 py-2 text-uppercase tracking-wider fw-bold">
+        YOUR DREAM • OUR DESTINATION
+      </span>
+    </div>
+
+  </div>
+</nav>
+
+
+  <!-- HERO HEADER -->
+  <header class="hero text-center shadow-lg">
+    <div class="container">
+      <h1 class="mb-2">CEYLON IN 7 DAYS</h1>
+      <p class="mb-3">Prepared for <strong>Mr. Amal Fernando</strong></p>
+      <div class="d-flex justify-content-center gap-3 hero-meta">
+        <span>👥 6 Pax (Adults)</span> • 
+        <span>🌙 06 Nights / 07 Days</span> • 
+        <span>✈️ Hong Kong</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="container my-4">
+
+    <!-- INTRO DESCRIPTION SECTION -->
+    <section class="overview-card p-4 mb-4">
+      <small class="text-primary fw-bold text-uppercase tracking-wide d-block mb-1" style="font-size: 0.85rem;">An Unforgettable Travel Experience For Your Dream Holiday</small>
+      <h4 class="fw-extrabold text-dark mb-3">🌴 DISCOVER THE BEAUTY OF SRI LANKA</h4>
+      
+      <p class="text-dark fw-semibold mb-3">
+        Experience the true beauty of Sri Lanka on this unforgettable 7-day journey, where nature, culture, adventure, and relaxation come together. Explore ancient heritage sites, enjoy an exciting elephant safari, discover traditional village life, and experience the warmth of authentic Sri Lankan hospitality.
+      </p>
+      <p class="text-dark fw-semibold mb-3">
+        Travel through beautiful beaches, lush forests, misty mountains, and green tea plantations. Enjoy a scenic Madu River boat ride, visit a sea turtle hatchery, explore the historic Sigiriya Rock Fortress, and discover the cultural treasures of Kandy and Nuwara Eliya.
+      </p>
+      <p class="text-dark fw-bold italic mb-0 fs-6">
+        From traditional Sri Lankan cuisine and Ayurveda experiences to cultural performances, tea plantations, waterfalls, and breathtaking mountain views, every day offers something special. <em>This tour is designed to give you a wonderful taste of Sri Lanka and create unforgettable memories with your loved ones.</em> 🇱🇰🌴✨
+      </p>
+    </section>
+
+    <!-- PRICING & SPEC HIGHLIGHTS -->
+    <div class="row g-3 mb-4">
+      <div class="col-6 col-md-3">
+        <div class="glass-card p-3 text-center">
+          <small class="metric-label d-block">Price / Person</small>
+          <strong class="metric-value text-primary">$1000 USD</strong>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="glass-card p-3 text-center">
+          <small class="metric-label d-block">Total Group</small>
+          <strong class="metric-value">6 Pax</strong>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="glass-card p-3 text-center">
+          <small class="metric-label d-block">Duration</small>
+          <strong class="metric-value">7 Days</strong>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="glass-card p-3 text-center">
+          <small class="metric-label d-block">Meal Basis</small>
+          <strong class="metric-value">Half Board</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- INTERACTIVE MAP OF SRI LANKA -->
+    <section class="glass-card p-3 p-md-4 mb-4">
+      <div class="d-flex align-items-center justify-content-between mb-3">
+        <div>
+          <h5 class="mb-1">🗺️ Interactive Route Map</h5>
+          <span class="text-dark fw-semibold" style="font-size: 1rem;">Click or tap any pin to explore the destination, stay & activities.</span>
+        </div>
+        <span class="badge bg-primary text-white rounded-pill px-3 py-2 fw-bold d-none d-md-inline-block" style="font-size: 0.95rem;">6 Precise Stops</span>
+      </div>
+      
+      <!-- Leaflet Map Canvas -->
+      <div id="sri-lanka-map"></div>
+    </section>
+
+    <!-- DAY BY DAY ITINERARY ACCORDION WITH LOCAL PHOTO GALLERIES -->
+    <section class="mb-4">
+      <h5 class="mb-3">🗓️ Detailed Itinerary</h5>
+      
+      <div class="accordion" id="itineraryAccordion">
+        
+        <!-- Day 1 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#day1">
+              Day 1: Arrival & Local Welcome (Kurana)
+            </button>
+          </h2>
+          <div id="day1" class="accordion-collapse collapse show" data-bs-parent="#itineraryAccordion">
+            <div class="accordion-body">
+              <div class="row g-3 align-items-center">
+                <div class="col-lg-7">
+                  <p class="mb-2">Arrive at Bandaranaike International Airport and receive a warm greeting from your dedicated private driver-guide. Transfer to nearby Kurana for rest and traditional Sri Lankan home hospitality.</p>
+                  <div>
+                    <span class="tag">🤝 Chauffeur Meeting</span>
+                    <span class="tag">🏡 Homestay Stay</span>
+                    <span class="tag">🍛 Welcome Dinner</span>
+                  </div>
+                  <div class="mt-3 p-3 rounded-3 stay-info">
+                    <strong>Stay:</strong> Mr. Amal's Home (1 Night) | <strong>Meals:</strong> Dinner Included
+                  </div>
+                </div>
+                <!-- Right Side 3 Local Photos -->
+                <div class="col-lg-5">
+                  <div class="day-photo-grid">
+                    <img src="images/chauffeurmeeting.jpg" alt="Day 1 Photo 1" />
+                    <img src="images/homestay.jpg" alt="Day 1 Photo 2" />
+                    <img src="images/dinner.jpg" alt="Day 1 Photo 3" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Day 2 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#day2">
+              Day 2: Sigiriya Citadel & Elephant Safari
+            </button>
+          </h2>
+          <div id="day2" class="accordion-collapse collapse" data-bs-parent="#itineraryAccordion">
+            <div class="accordion-body">
+              <div class="row g-3 align-items-center">
+                <div class="col-lg-7">
+                  <p class="mb-2">Climb the iconic 5th-century Sigiriya Rock Fortress, experience an authentic traditional village tour with lunch, and head out on a jeep safari in Habarana to observe wild elephants.</p>
+                  <div>
+                    <span class="tag">🏰 Sigiriya Fortress</span>
+                    <span class="tag">🐘 Elephant Safari</span>
+                    <span class="tag">🌾 Village Tour</span>
+                  </div>
+                  <div class="mt-3 p-3 rounded-3 stay-info">
+                    <strong>Stay:</strong> Kassapa Lion Rock (1 Night) | <strong>Meals:</strong> Half Board (HB) + Village Lunch
+                  </div>
+                </div>
+                <!-- Right Side 3 Local Photos -->
+                <div class="col-lg-5">
+                  <div class="day-photo-grid">
+                    <img src="images/sigiriya.jpeg" alt="Day 2 Photo 1" />
+                    <img src="images/elephant_safari.jpg" alt="Day 2 Photo 2" />
+                    <img src="images/villagetour.jpg" alt="Day 2 Photo 3" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Day 3 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#day3">
+              Day 3: Spice Gardens & Kandy Cultural Capital
+            </button>
+          </h2>
+          <div id="day3" class="accordion-collapse collapse" data-bs-parent="#itineraryAccordion">
+            <div class="accordion-body">
+              <div class="row g-3 align-items-center">
+                <div class="col-lg-7">
+                  <p class="mb-2">Drive to the hill capital of Kandy. En route, explore an aromatic spice garden. Visit Sri Lanka's sacred Temple of the Tooth Relic and watch a cultural dance performance.</p>
+                  <div>
+                    <span class="tag">🌿 Spice Garden</span>
+                    <span class="tag">🛕 Temple of Sacred Tooth</span>
+                    <span class="tag">💃 Cultural Show</span>
+                  </div>
+                  <div class="mt-3 p-3 rounded-3 stay-info">
+                    <strong>Stay:</strong> Amaya Hills (1 Night) | <strong>Meals:</strong> Half Board (HB)
+                  </div>
+                </div>
+                <!-- Right Side 3 Local Photos -->
+                <div class="col-lg-5">
+                  <div class="day-photo-grid">
+                    <img src="images/spicegarden.jpg" alt="Day 3 Photo 1" />
+                    <img src="images/tenploftooth.jpg" alt="Day 3 Photo 2" />
+                    <img src="images/culturalshow.jpg" alt="Day 3 Photo 3" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Day 4 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#day4">
+              Day 4: Waterfalls & Tea Country
+            </button>
+          </h2>
+          <div id="day4" class="accordion-collapse collapse" data-bs-parent="#itineraryAccordion">
+            <div class="accordion-body">
+              <div class="row g-3 align-items-center">
+                <div class="col-lg-7">
+                  <p class="mb-2">Journey into misty tea country, stopping at scenic Ramboda Falls. Tour a working tea factory and plantation with fresh Ceylon tea tasting.</p>
+                  <div>
+                    <span class="tag">🌊 Ramboda Falls</span>
+                    <span class="tag">☕ Tea Factory & Plantation</span>
+                    <span class="tag">🏞️ Highlands View</span>
+                  </div>
+                  <div class="mt-3 p-3 rounded-3 stay-info">
+                    <strong>Stay:</strong> Araliya Green Hills (1 Night) | <strong>Meals:</strong> Half Board (HB)
+                  </div>
+                </div>
+                <!-- Right Side 3 Local Photos -->
+                <div class="col-lg-5">
+                  <div class="day-photo-grid">
+                    <img src="images/Ramboda-Falls.jpg" alt="Day 4 Photo 1" />
+                    <img src="images/teafactory.jpg" alt="Day 4 Photo 2" />
+                    <img src="images/highlands.jpg" alt="Day 4 Photo 3" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Day 5 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#day5">
+              Day 5: Little Adam's Peak & Coastal Relaxation
+            </button>
+          </h2>
+          <div id="day5" class="accordion-collapse collapse" data-bs-parent="#itineraryAccordion">
+            <div class="accordion-body">
+              <div class="row g-3 align-items-center">
+                <div class="col-lg-7">
+                  <p class="mb-2">Take an early walk up Little Adam's Peak for sweeping mountain vistas before descending to the southwest beach resort of Induruwa. Relax with a traditional Ayurveda massage.</p>
+                  <div>
+                    <span class="tag">🥾 Little Adam's Peak</span>
+                    <span class="tag">🏖️ Beach Stay</span>
+                    <span class="tag">💆‍♂️ Ayurveda Massage</span>
+                  </div>
+                  <div class="mt-3 p-3 rounded-3 stay-info">
+                    <strong>Stay:</strong> Pandanus Beach Resort & Spa (1 Night) | <strong>Meals:</strong> Half Board (HB)
+                  </div>
+                </div>
+                <!-- Right Side 3 Local Photos -->
+                <div class="col-lg-5">
+                  <div class="day-photo-grid">
+                    <img src="images/littleadam.jpg" alt="Day 5 Photo 1" />
+                    <img src="images/beachstay.jpg" alt="Day 5 Photo 2" />
+                    <img src="images/ayurveda.jpg" alt="Day 5 Photo 3" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Day 6 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#day6">
+              Day 6: River Safari & Colombo Capital Tour
+            </button>
+          </h2>
+          <div id="day6" class="accordion-collapse collapse" data-bs-parent="#itineraryAccordion">
+            <div class="accordion-body">
+              <div class="row g-3 align-items-center">
+                <div class="col-lg-7">
+                  <p class="mb-2">Enjoy a scenic boat trip through the mangrove lagoons of the Madu River, visit a sea turtle conservation hatchery, then transfer to Colombo for a city and shopping tour.</p>
+                  <div>
+                    <span class="tag">🚤 Madu River Safari</span>
+                    <span class="tag">🐢 Sea Turtle Hatchery</span>
+                    <span class="tag">🛍️ Colombo City Tour</span>
+                  </div>
+                  <div class="mt-3 p-3 rounded-3 stay-info">
+                    <strong>Stay:</strong> Amari Colombo (1 Night) | <strong>Meals:</strong> Bed & Breakfast (BB) Only
+                  </div>
+                </div>
+                <!-- Right Side 3 Local Photos -->
+                <div class="col-lg-5">
+                  <div class="day-photo-grid">
+                    <img src="images/maduriver.jpg" alt="Day 6 Photo 1" />
+                    <img src="images/TurtleHatchery.jpg" alt="Day 6 Photo 2" />
+                    <img src="images/colombo.jpg" alt="Day 6 Photo 3" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- INCLUSIONS & EXCLUSIONS -->
+    <section class="glass-card p-4 mb-4">
+      <h5 class="mb-3">📋 Package Details</h5>
+      <div class="row g-3">
+        <div class="col-md-6">
+          <div class="p-3 bg-white rounded-3 border h-100">
+            <h6 class="fw-bold text-success fs-5 mb-3">✅ Included in Package</h6>
+            <ul class="ps-3 package-list mb-0">
+              <li>Hotels as mentioned above (HB basis, Colombo BB basis).</li>
+              <li>Entrance tickets for all listed activities.</li>
+              <li>Two special lunches (1 Traditional Sri Lankan village lunch).</li>
+              <li>Fully air-conditioned private vehicle during the tour.</li>
+              <li>Tolls, parking fees, fuel, and driver expenses.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="p-3 bg-white rounded-3 border h-100">
+            <h6 class="fw-bold text-danger fs-5 mb-3">❌ Excluded from Package</h6>
+            <ul class="ps-3 package-list mb-0">
+              <li>Early check-in & late check-out charges.</li>
+              <li>Expenses of a personal nature (laundry, beverages, tipping).</li>
+              <li>Visa fees / Airfare.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- POLICIES & TERMS -->
+    <section class="glass-card p-4 mb-4">
+      <h5 class="mb-3">📄 Policies & Conditions</h5>
+      
+      <div class="row g-3">
+        <div class="col-md-5">
+          <h6 class="fw-bold text-dark fs-5">Child Policy</h6>
+          <ul class="ps-3 text-dark fw-semibold" style="font-size: 1.02rem;">
+            <li><strong>0 – 5.99 yrs:</strong> Free of Charge</li>
+            <li><strong>6 – 11.99 yrs:</strong> 50% discount off package rate</li>
+            <li><strong>12+ yrs:</strong> Charged at full adult rate</li>
+          </ul>
+        </div>
+        <div class="col-md-7">
+          <h6 class="fw-bold text-dark fs-5">Cancellation Schedule</h6>
+          <div class="table-responsive">
+            <table class="table table-bordered text-dark fw-semibold align-middle" style="font-size: 1rem;">
+              <thead class="table-light text-dark fw-bold">
+                <tr><th>Notice Period</th><th>Cancellation Fee</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>0 – 15 days prior</td><td class="text-danger fw-bold">100% Charge</td></tr>
+                <tr><td>16 – 21 days prior</td><td>80% Charge</td></tr>
+                <tr><td>22 – 30 days prior</td><td>50% Charge</td></tr>
+                <tr><td>31+ days prior</td><td class="text-success fw-bold">No Charge</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <small class="text-dark fw-semibold d-block mt-3" style="font-size: 0.95rem;">
+        * Hotel check-in: 14:00 hrs | Check-out: 11:00 hrs.<br>
+        * Wildlife safari visits are taken at clients' own risk. Safari jeeps are basic non-AC vehicles with standard coverage.
+      </small>
+    </section>
+
+  </main>
+
+
+<!-- OFFICIAL AGENCY FOOTER WITH CONTACT DETAILS -->
+<footer class="agency-footer text-white pt-5 pb-4 mt-5">
+  <div class="container">
+    
+    <!-- Top Row: Logo & Tagline -->
+    <div class="row g-4 align-items-center border-bottom border-secondary pb-4 mb-4">
+      <div class="col-md-7 text-center text-md-start">
+        <div class="d-flex align-items-center justify-content-center justify-content-md-start gap-3">
+          <!-- Inside <footer> header row -->
+<img src="images/dream island logo.jpeg" alt="Dream Island Logo" class="footer-logo">
+          <div>
+            <h5 class="mb-0 fw-bold text-white fs-5">Dream Island Travels & Tours Pvt Ltd</h5>
+            <small class="text-white-50 fw-medium">Tailor-Made Holidays across Sri Lanka</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-5 text-center text-md-end">
+        <span class="d-block text-warning fw-bold fs-6">🌴 Culture • Wildlife • Adventures</span>
+        <small class="text-white-50 fst-italic">"Your Dream, Our Destination"</small>
+      </div>
+    </div>
+
+    <!-- Redesigned Contact Info Row with Bigger Fonts & Spaced Numbers -->
+<div class="row g-4 align-items-center justify-content-between py-2">
+  
+  <!-- Left Side: Address, Email, Web (Larger Text & Clean Alignment) -->
+  <div class="col-xl-8 col-lg-7">
+    <div class="d-flex flex-column flex-md-row flex-wrap gap-3 gap-md-4 text-center text-md-start">
+      
+      <!-- Address -->
+      <div class="d-flex align-items-center justify-content-center justify-content-md-start gap-2">
+        <span class="fs-5">📍</span>
+        <span class="text-white fw-medium footer-contact-text">
+          357/1, Waththegedara, Vithikuliya, Sri Lanka
+        </span>
+      </div>
+
+      <!-- Email -->
+      <div class="d-flex align-items-center justify-content-center justify-content-md-start gap-2">
+        <span class="fs-5">✉️</span>
+        <a href="mailto:Info@dreamislandtravels.com" class="text-white fw-medium footer-contact-text text-decoration-none hover-white">
+          Info@dreamislandtravels.com
+        </a>
+      </div>
+
+      <!-- Website -->
+      <div class="d-flex align-items-center justify-content-center justify-content-md-start gap-2">
+        <span class="fs-5">🌐</span>
+        <a href="https://dreamislandtravels.com" target="_blank" class="text-white fw-medium footer-contact-text text-decoration-none hover-white">
+          dreamislandtravels.com
+        </a>
+      </div>
+
+     <!-- Facebook Link with Inline SVG Icon -->
+<div class="d-flex align-items-center justify-content-center justify-content-md-start gap-2">
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#1877F2" class="bi bi-facebook" viewBox="0 0 16 16">
+    <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
+  </svg>
+  <a href="https://facebook.com" target="_blank" class="text-white fw-medium footer-contact-text text-decoration-none hover-white">
+    facebook.com/dreamislandtravels
+  </a>
+</div>
+
+    </div>
+  </div>
+
+  <!-- Right Side: Clean, Spacious Call Card -->
+  <div class="col-xl-4 col-lg-5 text-center text-lg-end">
+    <div class="contact-call-card p-3 rounded-3 d-inline-block border text-start shadow-sm">
+      <div class="d-flex align-items-center gap-2 mb-2">
+        <span class="fs-5">📞</span>
+        <span class="text-warning fw-bold text-uppercase tracking-wide fs-6">Contact Us</span>
+      </div>
+      <div class="phone-numbers">
+        <a href="tel:+94767070706" class="phone-link d-block">+94 76 707 0706</a>
+        <a href="tel:+94754242842" class="phone-link d-block">+94 75 424 2842</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+    <!-- Copyright Bar -->
+    <div class="text-center pt-4 mt-3 border-top border-secondary">
+      <small class="text-white-50" style="font-size: 0.85rem;">
+        &copy; Dream Island Travels & Tours Pvt Ltd. All rights reserved.
+      </small>
+    </div>
+
+  </div>
+</footer>
+
+
+  <!-- Leaflet Map JS Engine -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Custom JS -->
+  <script src="script.js"></script>
+</body>
+</html>
